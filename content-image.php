@@ -1,0 +1,27 @@
+
+			<article id="post-<?php the_ID(); ?>" <?php post_class( 'clearfix' ); ?>>
+				<?php if ( is_single() ) : ?>
+					<?php the_post_thumbnail( 'post-image' ); ?>
+					<h1><?php the_title(); ?></h1>
+					<div class="post-meta clearfix">
+						<time class="date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php the_date(); ?></time>
+						<div class="author">
+							Uploadet af: <?php the_author_posts_link(); ?>
+							<div class="gravatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), '48', '', get_the_author() ); ?></div>
+						</div>
+					</div>
+					<?php the_content( '', true ); ?>
+				<?php else : ?>
+					<?php the_post_thumbnail( 'post-thumbnail' ); ?>
+					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Direkte link til "', 'after' => '"' ) ); ?>"><?php the_title(); ?></a></h2>
+					<div class="content">
+						<div class="post-meta clearfix">
+							<time class="date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo get_the_date(); ?></time>
+							<div class="author">
+								Uploadet af: <?php the_author_posts_link(); ?>
+								<div class="gravatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), '48', '', get_the_author() ); ?></div>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
+			</article>

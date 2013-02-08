@@ -1,0 +1,157 @@
+	<section id="sidebar" class="<?php echo ( is_post_type_archive( 'forum' ) || is_singular( array( 'forum', 'topic', 'reply' ) ) ? 'forum ' : ''); ?>clearfix">
+		<?php if ( is_page() || is_search() ) : ?>
+			<?php if ( ! $post->post_parent ) :
+				// will display the subpages of this top level page
+				$children = wp_list_pages( 'child_of=' . $post->ID . '&sort_column=menu_order&title_li=&echo=0' );
+			else :
+				// will display the subpages of the top level page
+				if ( $post->ancestors ) :
+					// now you can get the the top ID of this page
+					// wp is putting the ids DESC, thats why the top level ID is the last one
+					$ancestors = end( $post->ancestors );
+					$children = wp_list_pages( 'child_of=' . $ancestors . '&sort_column=menu_order&title_li=&echo=0' );
+					// you will always get the whole subpages list
+				endif;
+			endif;
+			if ( $children ) : ?>
+				<nav class="submenu">
+					<ul class="clearfix">
+						<?php echo $children; ?>
+					</ul>
+				</nav>
+			<?php endif; ?>
+
+			<?php if ( is_active_sidebar( 'sidebar-left' ) ) : ?>
+				<?php dynamic_sidebar( 'sidebar-left' ); ?>
+			<?php endif; ?>
+		<?php elseif ( is_attachment() ) : ?>
+			<div class="attachment-meta">
+				<?php $imagemeta = wp_get_attachment_metadata();
+				// list values in array
+				/*$aperture        = $imagemeta['image_meta']['aperture'];
+				$credit            = $imagemeta['image_meta']['credit'];
+				$camera            = $imagemeta['image_meta']['camera'];
+				$caption           = $imagemeta['image_meta']['caption'];
+				$created_timestamp = $imagemeta['image_meta']['created_timestamp'];
+				$copyright         = $imagemeta['image_meta']['copyright'];
+				$focal_length      = $imagemeta['image_meta']['focal_length'];
+				$iso               = $imagemeta['image_meta']['iso'];
+				$shutter_speed     = $imagemeta['image_meta']['shutter_speed'];
+				$title             = $imagemeta['image_meta']['title']; */
+				if ( $imagemeta['width'] && $imagemeta['height'] ) {
+					echo '<div class="image-size"><strong>Fuld st&oslash;rrelse:</strong> ' . $imagemeta['width'] . ' x ' . $imagemeta['height'] . ' pixels</div>';
+				}
+				if ($imagemeta['image_meta']['camera']) {
+					echo '<div class="camera"><strong>Kamera:</strong> ' . $imagemeta['image_meta']['camera'] . '</div>';
+				}
+				if ($imagemeta['image_meta']['aperture']) {
+					echo '<div class="aperature"><strong>Bl&aelig;nde:</strong> F' . $imagemeta['image_meta']['aperture'] . '</div>';
+				}
+				if ($imagemeta['image_meta']['created_timestamp']) {
+					function time_stamp( $session_time ) { 
+						$time_difference = time() - $session_time ; 
+						$seconds = $time_difference; 
+						$minutes = round($time_difference / 60 );
+						$hours = round($time_difference / 3600 ); 
+						$days = round($time_difference / 86400 ); 
+						$weeks = round($time_difference / 604800 ); 
+						$months = round($time_difference / 2419200 ); 
+						$years = round($time_difference / 29030400 ); 
+						
+						if ( $seconds <= 60 ) { // Seconds
+							if ( $seconds == 1 ) { return "1 sekund siden"; } else { return "$seconds sekunder siden"; }
+						} elseif ( $minutes <= 60 ) { //Minutes
+							if ( $minutes == 1 ) { return "1 minut siden"; } else { return "$minutes minutter siden"; }
+						} elseif ( $hours <= 24 ) { //Hours
+							if ( $hours == 1 ) { return "1 time siden"; } else { return "$hours timer siden"; }
+						} else if($days <= 7) { //Days
+							if ( $days == 1 ) { return "1 dag siden"; } else { return "$days dage siden"; }
+						} else if($weeks <= 4) { //Weeks
+							if( $weeks == 1 ) { return "1 uge siden"; } else { return "$weeks uger siden"; }
+						} elseif ( $months <= 12 ) { //Months
+							if ( $months == 1 ) { return "1 m&aring;ned siden"; } else { return "$months m&aring;neder siden"; }
+						} else { //Years
+							if ( $years == 1 ) { return "1 &aring;r siden"; } else { return "$years &aring;r siden"; }
+						}
+					} 
+					echo '<div class="image-date"><strong>Billedet er taget:</strong> ' . time_stamp( $imagemeta['image_meta']['created_timestamp'] ) . ' (' . date( 'H:i:s d/m/y', $imagemeta['image_meta']['created_timestamp'] ) . ')</div>';
+				}
+				if ($imagemeta['image_meta']['focal_length']) {
+					echo '<div class="focal-length"><strong>Br&aelig;ndvidde:</strong> ' . $imagemeta['image_meta']['focal_length'] . ' mm</div>';
+				}
+				if ($imagemeta['image_meta']['iso']) {
+					echo '<div class="iso"><strong>ISO:</strong> ' . $imagemeta['image_meta']['iso'] . '</div>';
+				}
+				if ($imagemeta['image_meta']['shutter_speed']) {
+					echo '<div class="shutter-speed"><strong>Lukkehastighed:</strong> ';
+
+					// shutter speed handler
+					if ( ( 1 / $imagemeta['image_meta']['shutter_speed'] ) > 1 ) {
+						echo "1/";
+						if ( number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1 ) ==  number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0 ) ) {
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . ' sec</div>';
+						} else {
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . ' sec</div>';
+						}
+					} else {
+						echo $imagemeta['image_meta']['shutter_speed'] . ' sec</div>';
+					}
+				}
+				if ( $imagemeta['image_meta']['credit'] ) {
+					echo '<div class="credit"><strong>Fotograf:</strong> ' . $imagemeta['image_meta']['credit'] . '</div>';
+				}
+				if ( $imagemeta['image_meta']['copyright'] ) {
+					echo '<div class="copyright"><strong>Copyright:</strong> ' . $imagemeta['image_meta']['copyright'] . '</div>';
+				} ?>
+				<div class="comments"><a href="#comments"><?php comments_number( __( 'Ingen kommentarer', 'bike' ), __( '1 kommentar', 'bike' ), __( '% kommentarer', 'bike' ) );?></a></div>
+				<?php edit_post_link( 'Rediger billede', '<div class="edit-link">', '</div>' ); ?>
+			</div>
+			<?php echo '<a href="' . get_permalink( $post->post_parent ) . '">&laquo; Tilbage til "' . get_the_title( $post->post_parent ) . '"</a>'; ?>
+		<?php elseif ( is_post_type_archive( 'forum' ) || is_singular( array( 'forum', 'topic', 'reply' ) ) ) : ?>
+			<?php if ( is_active_sidebar( 'sidebar-forum-left' ) ) : ?>
+				<?php dynamic_sidebar( 'sidebar-forum-left' ); ?>
+			<?php endif; ?>
+		<?php else : ?>
+			<?php if ( get_post_format() ) :
+				$post_meta_class = ' ' . get_post_format();
+			endif;
+			if ( has_post_thumbnail() ) :
+				$post_meta_class .= ' image';
+			endif; ?>
+			<div class="post-meta<?php echo $post_meta_class; ?> clearfix">
+				<?php if ( has_post_format( 'aside' ) ) :
+					$bike_post_format_title = __( 'Vis alle sidebem&aelig;rkninger', 'bike' );
+					$bike_post_format = __( 'Sidebem&aelig;rkning', 'bike' );
+				elseif ( has_post_format( 'gallery' ) ) :
+					$bike_post_format_title = __( 'Vis alle gallerier', 'bike' );
+					$bike_post_format = __( 'Galleri', 'bike' );
+				elseif ( has_post_format( 'link' ) ) :
+					$bike_post_format_title = __( 'Vis alle links', 'bike' );
+					$bike_post_format = __( 'Link', 'bike' );
+				elseif ( has_post_format( 'image' ) ) :
+					$bike_post_format_title = __( 'Vis alle billeder', 'bike' );
+					$bike_post_format = __( 'Billede', 'bike' );
+				elseif ( has_post_format( 'quote' ) ) :
+					$bike_post_format_title = __( 'Vis alle citater', 'bike' );
+					$bike_post_format = __( 'Citat', 'bike' );
+				elseif ( has_post_format( 'status' ) ) :
+					$bike_post_format_title = __( 'Vis alle statusopdateringer', 'bike' );
+					$bike_post_format = __( 'Statusopdatering', 'bike' );
+				elseif ( has_post_format( 'video' ) ) :
+					$bike_post_format_title = __( 'Vis alle videoer', 'bike' );
+					$bike_post_format = __( 'Video', 'bike' );
+				else :
+					$bike_post_format = __( 'Indl&aelig;g', 'bike' );
+				endif; ?>
+				<?php if ( get_post_format() ) : ?>
+					<div class="format">Type: <?php printf( '<a href="%s" title="%s">%s</a>', esc_url( get_post_format_link( get_post_format() ) ), esc_attr( $bike_post_format_title ), $bike_post_format ); ?></div>
+				<?php else : ?>
+					<div class="format">Type: <?php echo $bike_post_format; ?></div>
+				<?php endif; ?>
+				<div class="comments"><a href="#comments"><?php comments_number( __( 'Ingen kommentarer', 'bike' ), __( '1 kommentar', 'bike' ), __( '% kommentarer', 'bike' ) );?></a></div>
+				<div class="categories">Kategorier: <?php the_category( ', ' ); ?></div>
+				<div class="tags">Emner: <?php the_tags( '', ', ' ); ?></div>
+				<?php edit_post_link( 'Rediger nyhed', '<div class="edit-link">', '</div>' ); ?>
+			</div>
+		<?php endif; ?>
+	</section>
