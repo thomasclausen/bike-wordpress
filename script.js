@@ -1,40 +1,12 @@
 (function($) {
 	$(document).ready(function(){
 		$('html').removeClass('no-js');
-		if($.browser.msie) {
-			$('#mainmenu li').hover(function () {
-				$(this).addClass('over');
-			}, function () {
-				$(this).removeClass('over');
-			});
-		}
-		if($.browser.safari || $.browser.webkit) {
-			$('body').addClass('safari');
-		}
-
-		var hasTouch = false;
-		if (('ontouchstart' in document.documentElement)) {
-			hasTouch = true;
-			$('body').addClass('touch');
-		}
 
 		if (!$('body').hasClass('forum-archive') || !$('body').hasClass('archive')) {
 			$('.blog section#content, .archive section#content').masonry({
 				itemSelector: 'article.post'
 			});
 		}
-
-		$('.toggle-box').each(function(index) {
-			if ($(this).children('.content').text() == '') {
-				$(this).children('.toggle-button').remove();
-			}
-		});
-		$('.toggle-box .toggle-button a').live('click', function() {
-			var row = $(this).parent().siblings('.content');
-			var row_button = $(this).parent();
-			
-			row.slideToggle(400);
-		});
 
 		$('#respond #reply-title a#cancel-comment-reply-link').insertBefore($('#respond h3')).removeAttr('style');
 		$('#respond #reply-title small').remove();
@@ -283,10 +255,6 @@
 			return temp.toLowerCase();
 		};
 	});
-	$(document).keyup(function(event){
-		if (event.keyCode == 27) {
-			document.location.href = '/wp-admin/';
-		}
-	});
 })(jQuery);
+
 jQuery.noConflict();
