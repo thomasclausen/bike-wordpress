@@ -56,10 +56,11 @@ button { width: 100%; font: 14px Arial, Helvetica, Verdana, sans-serif; line-hei
 input:focus,
 textarea:focus,
 select:focus,
+button:focus,
 input.focus,
 textarea.focus,
 select.focus,
-button:focus { border-color: #999; outline: none; }
+button.focus { border-color: #999; outline: none; }
 textarea { overflow: auto; }
 input.checkbox,
 input[type=checkbox],
@@ -100,7 +101,7 @@ header#top hgroup p.description { color: #fff; }
 
 nav.mainmenu { min-width: 960px; width: 100%; background: #fff; border-bottom: 3px solid #cc242c; -moz-box-shadow: 0 0 4px 4px rgba(51, 51, 51, 0.1); -webkit-box-shadow: 0 0 4px 4px rgba(51, 51, 51, 0.1); box-shadow: 0 0 4px 4px rgba(51, 51, 51, 0.1); }
 nav.mainmenu ul { width: 940px; margin: 0 auto; }
-nav.mainmenu ul li { font: 16px Arial, Helvetica, Verdana, sans-serif; line-height: 14px; color: #333; text-transform: uppercase; margin-left: 1px; display: inline-block; position: relative; }
+nav.mainmenu ul li { font-size: 16px; line-height: 14px; color: #333; text-transform: uppercase; margin-left: 1px; display: inline-block; position: relative; }
 nav.mainmenu ul li:first-child { margin-left: 0; }
 nav.mainmenu ul li.over,
 nav.mainmenu ul li:hover,
@@ -222,7 +223,7 @@ article.post .status-link a { color: #cc242c; text-decoration: none; }
 article.post.format-quote h2 { text-align: right; }
 article.post.format-quote .content { border-top: 1px solid #d8d8d8; border-bottom: none; position: relative; }
 article.post.format-quote blockquote { padding-left: 20px; position: relative; }
-article.post.format-quote blockquote:before { font: 40px Georgia, 'Trebuchet MS', Arial, 'Lucida Console', serif; line-height: 30px; color: #9c9c9c; position: absolute; top: 0.1em; left: 0; content: '\201C'; }
+article.post.format-quote blockquote:before { font: 40px Georgia, serif; line-height: 30px; color: #9c9c9c; position: absolute; top: 0.1em; left: 0; content: '\201C'; }
 article.post.format-quote p { font-size: 20px; line-height: 30px; font-style: italic; margin-bottom: 20px; }
 
 /* VIDEO */
@@ -278,7 +279,7 @@ article.attachment .post-meta a { color: #686868; text-decoration: none; }
 nav.pagination.post-links { clear: both; }
 .masonry nav.pagination.post-links { width: 940px; margin-right: 10px; margin-left: 10px; position: absolute; top: 100%; left: 0; }
 nav.pagination.post-links ul { width: 100%; text-align: center; }
-nav.pagination.post-links ul li { font: 16px Arial, Helvetica, Verdana, sans-serif; line-height: 30px; color: #333; text-transform: uppercase; margin-left: 1px; display: inline; }
+nav.pagination.post-links ul li { font-size: 16px; line-height: 30px; color: #333; text-transform: uppercase; margin-left: 1px; display: inline; }
 nav.pagination.post-links ul li:first-child { margin-left: 0; }
 nav.pagination.post-links ul li span,
 nav.pagination.post-links ul li a { color: #333; text-decoration: none; padding-right: 10px; padding-left: 10px; border: 1px solid rgba(104, 104, 104, 0.2); display: inline-block; white-space: nowrap; }
@@ -291,7 +292,7 @@ nav.pagination.post-links ul li.prev a,
 nav.pagination.post-links ul li.next a { border: none; }
 
 /* PAGINATION - PAGE */
-nav.pagination.page-links { font: 16px Arial, Helvetica, Verdana, sans-serif; line-height: 30px; color: #333; text-transform: uppercase; text-align: center; margin-top: 60px; margin-bottom: 20px; clear: both; }
+nav.pagination.page-links { font-size: 16px; line-height: 30px; color: #333; text-transform: uppercase; text-align: center; margin-top: 60px; margin-bottom: 20px; clear: both; }
 nav.pagination.page-links span { padding-right: 10px; padding-left: 10px; border: 1px solid #686868; display: inline-block; white-space: nowrap; }
 nav.pagination.page-links a { color: #333; text-decoration: none; }
 nav.pagination.page-links a span { border-color: rgba(104, 104, 104, 0.2); }
@@ -303,7 +304,7 @@ nav.pagination.page-links a span.next { border: none; }
 /* PAGINATION - IMAGE */
 nav.pagination.image-links { margin-top: 60px; clear: both; }
 nav.pagination.image-links ul { width: 100%; text-align: center; }
-nav.pagination.image-links ul li { font: 16px Arial, Helvetica, Verdana, sans-serif; line-height: 30px; color: #333; text-transform: uppercase; padding-left: 0; margin-left: 1px; display: inline; }
+nav.pagination.image-links ul li { font-size: 16px; line-height: 30px; color: #333; text-transform: uppercase; padding-left: 0; margin-left: 1px; display: inline; }
 nav.pagination.image-links ul li:first-child { margin-left: 0; }
 nav.pagination.image-links ul li a { color: #333; text-decoration: none; padding-right: 10px; padding-left: 10px; display: inline-block; white-space: nowrap; }
 
@@ -319,11 +320,15 @@ footer a:hover { text-decoration: none; }
 /* GRAVITY FORMS */
 article .gform_body ul { list-style: none; padding-left: 0; margin-bottom: 0; }
 article .gform_body li { list-style: none; padding-left: 0; margin-bottom: 10px; margin-left: 0; }
-.gform_description { font-size: 14px; line-height: 20px; margin-bottom: 20px; display: block; }
+article .gform_body ul.gfield_checkbox li { margin-bottom: 0; }
+.gform_description,
+.validation_error { font-size: 14px; line-height: 20px; margin-bottom: 20px; display: block; }
 .gfield_description { font-size: 12px; line-height: 16px; font-style: italic; margin-bottom: 10px; }
 .gfield_required { font-weight: bold; color: #8d1c1c; margin-left: 5px; }
+.validation_error,
+.validation_message { font-weight: bold; color: #8d1c1c; }
 .clear-multi {}
-.clear-multi .ginput_container { width: 33%; padding-left: 10px; float: left; }
+.clear-multi .ginput_container { width: 33%; padding-left: 10px; display: inline-block; }
 .clear-multi .ginput_container:first-child { width: 34%; padding-left: 0; }
 .clear-multi .gfield_date_dropdown_day { }
 .clear-multi .gfield_date_dropdown_month {}
@@ -342,8 +347,8 @@ article .gform_body li { list-style: none; padding-left: 0; margin-bottom: 10px;
 
 .commentlist li header { padding-bottom: 10px; margin-bottom: 5px; border-bottom: 1px solid #ccdde5; }
 .commentlist li header .gravatar { width: 32px; position: absolute; top: 0; left: 0; }
-.commentlist li header .author { font-size: 12px; font-weight: bold; }
-.commentlist li header .date { }
+.commentlist li header .author { font-size: 12px; line-height: 16px; font-weight: bold; }
+.commentlist li header .date { font-size: 12px; line-height: 16px; font-style: italic; }
 .commentlist li header a { text-decoration: none; }
 .commentlist li header a:hover,
 .commentlist li header a:focus { }
