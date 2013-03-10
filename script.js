@@ -2,11 +2,9 @@
 	$(document).ready(function(){
 		$('html').removeClass('no-js');
 
-		if (!$('body').hasClass('forum-archive') || !$('body').hasClass('archive')) {
-			$('.blog section#content, .archive section#content').masonry({
-				itemSelector: 'article.post'
-			});
-		}
+		$('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content').masonry({
+			itemSelector: 'article.post'
+		});
 
 		$('#respond #reply-title a#cancel-comment-reply-link').insertBefore($('#respond h3')).removeAttr('style');
 		$('#respond #reply-title small').remove();

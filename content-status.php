@@ -4,7 +4,7 @@
 					<div class="post-meta clearfix">
 						<time class="date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php the_date(); ?></time>
 						<div class="author">
-							Skrevet af: <?php the_author_posts_link(); ?>
+							<?php _e( 'Skrevet af:', 'bike' ); ?> <?php the_author_posts_link(); ?>
 							<div class="gravatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), '48', '', get_the_author() ); ?></div>
 						</div>
 					</div>
@@ -14,7 +14,7 @@
 						<div class="post-meta clearfix">
 							<time class="date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo get_the_date(); ?></time>
 							<div class="author">
-								Skrevet af: <?php the_author_posts_link(); ?>
+								<?php _e( 'Skrevet af:', 'bike' ); ?> <?php the_author_posts_link(); ?>
 								<div class="gravatar"><?php echo get_avatar( get_the_author_meta( 'ID' ), '48', '', get_the_author() ); ?></div>
 							</div>
 						</div>
