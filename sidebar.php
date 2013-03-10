@@ -89,12 +89,12 @@
 					if ( ( 1 / $imagemeta['image_meta']['shutter_speed'] ) > 1 ) {
 						echo "1/";
 						if ( number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1 ) ==  number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0 ) ) {
-							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . ' sek.</div>';
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . __( ' sek.', 'bike' ) . '</div>';
 						} else {
-							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . ' sek.</div>';
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . __( ' sek.', 'bike' ) . '</div>';
 						}
 					} else {
-						echo $imagemeta['image_meta']['shutter_speed'] . ' sek.</div>';
+						echo $imagemeta['image_meta']['shutter_speed'] . __( ' sek.', 'bike' ) . '</div>';
 					}
 				}
 				if ( $imagemeta['image_meta']['credit'] ) {
@@ -137,6 +137,7 @@
 					$bike_post_format_title = __( 'Vis alle videoer', 'bike' );
 					$bike_post_format = __( 'Video', 'bike' );
 				else :
+					$bike_post_format_title = __( 'Indl&aelig;g', 'bike' );
 					$bike_post_format = __( 'Indl&aelig;g', 'bike' );
 				endif; ?>
 				<?php if ( get_post_format() ) : ?>
