@@ -2,8 +2,6 @@
 
 <?php get_header( $bike_post_type ); ?>
 
-<?php get_sidebar( $bike_post_type ); ?>
-
 	<section id="content" class="clearfix">
 		<?php get_search_form(); ?>
 		<?php if ( have_posts() ) : ?>
@@ -17,7 +15,7 @@
 			</article>
 		<?php else : ?>
 			<article class="searchlist clearfix">
-				Din s&oslash;gning gav intet resultat...
+				<?php _e( 'Din s&oslash;gning gav intet resultat...', 'bike' ); ?>
 			</article>
 		<?php endif; ?>
 	</section>

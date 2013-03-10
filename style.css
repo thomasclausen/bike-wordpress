@@ -4,7 +4,7 @@ Theme URI: http://www.vmcc.dk
 Description: Dette WordPress tema er designet til Vodskov Motion Cykel Club.
 Author: Thomas Clausen
 Author URI: http://www.thomasclausen.dk/
-Version: 0.1
+Version: 1.1
 Tags: red
 
 Like WordPress, this work (The CSS, XHTML and design) is released under GNU General Public License, version 2 (GPL).
@@ -18,8 +18,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 /* GLOBAL */
 html { font: 62.5% Arial, Helvetica, Verdana, sans-serif; line-height: 1em; background: #f8f8f8 url(images/html-bg.jpg); }
 body { font-size: 1em; line-height: 1.6em; color: #333; background: url(images/body-bg.png) no-repeat 50% 0; -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -ms-text-size-adjust: 100%; }
-h1 { font: 34px Arial, Helvetica, Verdana, sans-serif; line-height: 34px; margin-bottom: 16px; }
-h2 { font: 26px Arial, Helvetica, Verdana, sans-serif; line-height: 30px; margin-bottom: 16px; }
+h1 { font-size: 34px; line-height: 34px; margin-bottom: 16px; }
+h2 { font-size: 26px; line-height: 30px; margin-bottom: 16px; }
 h3 { font-size: 14px; line-height: 18px; margin-bottom: 16px; }
 h4,
 h5,
@@ -74,7 +74,7 @@ button,
 input.button,
 input[type=button],
 input[type=reset],
-input[type=submit] { width: auto; height: 28px; font-weight: bold; color: #fff; text-transform: uppercase; padding: 1px 20px; background: #cc242c url(images/button-bg.png); border: none; -moz-box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); -webkit-box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); margin-top: 16px; clear: both; }
+input[type=submit] { width: auto; height: 28px; font-weight: bold; color: #fff; text-transform: uppercase; padding: 1px 20px; background: #cc242c url(images/button-bg.png); border: none; -moz-box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); -webkit-box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, 0.4); margin-top: 16px; clear: both; cursor: pointer; }
 .required { margin-left: 5px; }
 .required strong,
 .required b { font-weight: bold; color: #8d1c1c; }
@@ -131,7 +131,6 @@ section#sidebar nav.submenu ul li:hover,
 section#sidebar nav.submenu ul li:focus,
 section#sidebar nav.submenu ul li.current_page_item { background: url(images/submenu-li-current-bg.png) no-repeat 100% 50%; }
 section#sidebar nav.submenu ul li a { color: #333; text-decoration: none; display: block; }
-.single section#sidebar a { color: #a0a0a0; text-decoration: none; }
 section#sidebar .post-meta { width: 300px; color: #a0a0a0; border-top: 3px solid #686868; margin-bottom: 34px; }
 section#sidebar .post-meta.aside,
 section#sidebar .post-meta.status,
@@ -142,13 +141,25 @@ section#sidebar .attachment-meta { width: 300px; color: #a0a0a0; border-top: 3px
 section#sidebar .attachment-meta div { font-size: 12px; line-height: 24px; border-bottom: 1px solid rgba(104, 104, 104, 0.2); }
 section#sidebar .attachment-meta a { color: #686868; text-decoration: none; }
 
+.single section#sidebar a { color: #a0a0a0; text-decoration: none; }
+
+.page-template-page-full-width-php section#sidebar { width: 100%; min-height: 1px; padding-top: 0; margin: 50px 33px -1px 33px; float: none; }
+.page-template-page-full-width-php section#sidebar nav.submenu { border-top: none; margin-bottom: 0; }
+.page-template-page-full-width-php section#sidebar nav.submenu ul li { padding-right: 14px; padding-left: 14px; background: #fafafa; border: 1px solid rgba(104, 104, 104, 0.2); margin-left: 5px; display: inline-block; }
+.page-template-page-full-width-php section#sidebar nav.submenu ul li:hover,
+.page-template-page-full-width-php section#sidebar nav.submenu ul li:focus,
+.page-template-page-full-width-php section#sidebar nav.submenu ul li.current_page_item { background: #fff; border-bottom-color: #fff; }
+
 section#content { width: 620px; float: left; }
 .home section#content,
 .blog section#content,
 .archive section#content { width: 100%; margin-right: 0; margin-left: 0; float: none; }
+.forum-archive section#content { margin-right: 10px; margin-left: 10px; float: left; }
 .search section#content,
-.forum-archive section#content { width: 620px; margin-right: 10px; margin-left: 10px; float: left; }
+.error404 section#content { margin-right: auto; margin-left: auto; float: none; }
 section#content.masonry { margin-bottom: 80px; }
+
+.page-template-page-full-width-php section#content { width: 100%; margin: 0 10px 50px 10px; float: none; }
 
 section#content article .box { width: 300px; margin-right: 10px; margin-left: 10px; float: left; }
 section#content article .box .image { }
@@ -235,8 +246,10 @@ article.post.format-video .video .sharedaddy { display: none; }
 
 /* SEARCH FORM */
 article.searchform { background: #fff; border-bottom: 3px solid #686868; position: relative; z-index: 10; }
+.error404 article.searchform { border-top: 3px solid #686868; border-bottom: none; margin-top: -1px; }
 article.searchform form { padding: 19px; border: 1px solid #d8d8d8; border-bottom: none; margin-bottom: 0; }
-article.searchform fieldset { width: 430px; float: left; }
+.error404 article.searchform form { border-top: none; border-bottom: 1px solid #d8d8d8; }
+article.searchform fieldset { width: 430px; margin-bottom: 0; float: left; }
 article.searchform fieldset.button { width: 150px; text-align: right; }
 article.searchform label { display: none; }
 article.searchform input[type=text],

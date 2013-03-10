@@ -11,8 +11,8 @@ $bike_post_type = get_post_type(); ?>
 			<?php bike_pagination(); ?>
 		<?php else : ?>
 			<article class="post clearfix">
-				<h2>Ingen nyheder</h2>
-				<p>Vi har ingen nyheder at dele med dig endnu...</p>
+				<h2><?php _e( 'Ingen nyheder', 'bike' ); ?></h2>
+				<p><?php _e( 'Vi har ingen nyheder at dele med dig endnu...', 'bike' ); ?></p>
 			</article>
 		<?php endif; ?>
 	</section>

@@ -23,10 +23,10 @@
 					<div class="comment-form-avatar"><a href="https://gravatar.com/site/signup/" target="_blank"><img src="http://www.gravatar.com/avatar/?s=25&forcedefault=y&d=mystery" alt="<?php _e( 'Gravatar', 'bike' ); ?>" width="25" class="no-grav" /></a></div>
 					<div class="comment-form-fields">
 						<fieldset class="comment-form-email">
-							<input id="email" name="email" type="email" tabindex="2" placeholder="<?php _e( 'E-mail (p&#229;kr&#230;vet - vil ikke v&aelig;re synlig eller blive offentliggjort)', 'bike' ) ?>" value="<?php echo esc_attr( $comment_author ); ?>" required aria-required="true" />
+							<input id="email" name="email" type="email" tabindex="2" placeholder="<?php _e( 'E-mail (p&aring;kr&aelig;vet - vil ikke v&aelig;re synlig eller blive offentliggjort)', 'bike' ) ?>" value="<?php echo esc_attr( $comment_author ); ?>" required aria-required="true" />
 						</fieldset>
 						<fieldset class="comment-form-author">
-							<input id="author" name="author" type="text" tabindex="3" placeholder="<?php _e( 'Navn (p&#229;kr&#230;vet)', 'bike' ); ?>" value="<?php echo esc_attr( $comment_author_email ); ?>" required aria-required="true" />
+							<input id="author" name="author" type="text" tabindex="3" placeholder="<?php _e( 'Navn (p&aring;kr&aelig;vet)', 'bike' ); ?>" value="<?php echo esc_attr( $comment_author_email ); ?>" required aria-required="true" />
 						</fieldset>
 						<fieldset class="comment-form-url">
 							<input id="url" name="url" type="text" tabindex="4" placeholder="<?php _e( 'Hjemmeside', 'bike' ); ?>" value="<?php echo esc_attr( $comment_author_url ); ?>" />
@@ -38,16 +38,16 @@
 		<div class="comment-form-actions clearfix">
 			<?php do_action( 'comment_form', $post->ID ); ?>
 			<div class="comment-form-allowed-tags">
-				<p>Disse <abbr title="HyperText Markup Language">HTML</abbr> koder og attributter er tilladte: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt;</code></p>
+				<p><?php sprintf( __( 'Disse <abbr title="HyperText Markup Language">HTML</abbr> koder og attributter er tilladte: %s' ), ' <code>' . allowed_tags() . '</code>' ); ?></p>
 			</div>
 			<fieldset class="comment-form-submit">
 				<input name="submit" type="submit" id="submit" tabindex="6" value="<?php _e( 'Send kommentar', 'bike' ); ?>" />
 			</fieldset>
 			<fieldset class="comment-form-subscribe">
 				<input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe_comments" />
-				<label for="subscribe">Send mig en e-mail n&aring;r der kommer nye kommentarer</label>
+				<label for="subscribe"><?php _e( 'Send mig en e-mail n&aring;r der kommer nye kommentarer', 'bike' ); ?></label>
 				<input type="checkbox" name="subscribe_posts" id="subscribe_posts" value="subscribe_posts" />
-				<label for="subscribe">Send mig en e-mail n&aring;r der kommer nye indl&aelig;g</label>
+				<label for="subscribe"><?php _e( 'Send mig en e-mail n&aring;r der kommer nye indl&aelig;g', 'bike' ); ?></label>
 			</fieldset>
 		</div>
 	</form>

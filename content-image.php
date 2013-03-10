@@ -13,7 +13,7 @@
 					<?php the_content( '', true ); ?>
 				<?php else : ?>
 					<?php the_post_thumbnail( 'post-thumbnail' ); ?>
-					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Direkte link til "', 'after' => '"' ) ); ?>"><?php the_title(); ?></a></h2>
+					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => __( 'Direkte link til "', 'bike' ), 'after' => '"' ) ); ?>"><?php the_title(); ?></a></h2>
 					<div class="content">
 						<div class="post-meta clearfix">
 							<time class="date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo get_the_date(); ?></time>

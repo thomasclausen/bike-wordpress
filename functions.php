@@ -3,8 +3,8 @@
  * BIKE functions and definitions
  *
  * @package BIKE
- * @since BIKE 0.1
- * @last_updated BIKE 0.1
+ * @since BIKE 1.0
+ * @last_updated BIKE 1.1
  */
 
 
@@ -12,13 +12,13 @@ if ( ! function_exists( 'bike_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features
 	 *
-	 * @since BIKE 0.1
+	 * @since BIKE 1.0
 	 */
 	function bike_setup() {
 		/**
 		 * Set the content width based on the theme's design and stylesheet
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		if ( ! isset( $content_width ) ) :
 			$content_width = 560;
@@ -27,37 +27,36 @@ if ( ! function_exists( 'bike_setup' ) ) :
 		/**
 		 * Add custom stylesheet for the editor
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		add_editor_style();
 
 		/**
 		 * Add theme options
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
-		//require( get_stylesheet_directory() . '/theme-options.php' );
+		//require( get_template_directory() . '/theme-options.php' );
 
 		/**
 		 * Make theme available for translation
 		 * Translations can be filed in the /languages/ directory
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
-		load_theme_textdomain( 'bike', get_stylesheet_directory() . '/languages' );
+		load_theme_textdomain( 'bike', get_template_directory() . '/languages' );
 
 		/**
 		 * Add support for custom post types
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'video' ) );
-		//add_theme_support( 'post-formats', array( 'aside', 'chat', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio' ) );
 
 		/**
 		 * Add support for custom header
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		$defaults = array(
 			'default-image' => get_template_directory_uri() . '/images/header.jpg',
@@ -73,7 +72,7 @@ if ( ! function_exists( 'bike_setup' ) ) :
 		/**
 		 * Add support for post thumbnails and set size
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		add_theme_support( 'post-thumbnails', array( 'post' ) );
 		set_post_thumbnail_size( 460, 230, true );
@@ -81,21 +80,21 @@ if ( ! function_exists( 'bike_setup' ) ) :
 		/**
 		 * Add support for post image and set size
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		add_image_size( 'post-image', 620, 465, true );
 		
 		/**
 		 * Add support for default posts and comments RSS feed links to head
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		add_theme_support( 'automatic-feed-links' );
 
 		/**
 		 * Add support for nav menu
 		 *
-		 * @since BIKE 0.1
+		 * @since BIKE 1.0
 		 */
 		register_nav_menu( 'primary', __( 'Hovedmenu', 'bike' ) );
 	}
@@ -105,7 +104,7 @@ add_action( 'after_setup_theme', 'bike_setup' );
 /**
  * Extend user profiles by adding input fields for facebook, twitter etc. and removing unwanted ones
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_user_profile( $contactmethods ) {
 	$contactmethods = array(
@@ -126,7 +125,7 @@ add_filter( 'user_contactmethods', 'bike_user_profile', 10, 1 );
 /**
  * Remove unwanted meta tags and scripts from header
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 remove_action( 'wp_head', 'wp_generator' ); // WordPress version number
 remove_action( 'wp_head', 'rsd_link' );
@@ -136,19 +135,18 @@ remove_action( 'wp_head', 'feed_links_extra', 3 );
 /**
  * Enqueue scripts and styles
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_scripts_styles() {
 	wp_register_style( 'reset-html5', get_template_directory_uri() . '/reset-html5.css', false, '1.0' );
 	wp_enqueue_style( 'reset-html5' );
-	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', false, '0.1' );
+	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', false, '1.1' );
 	wp_enqueue_style( 'bike-theme' );
 	if ( ! is_404() ) :
 		wp_deregister_script( 'comment-reply' );
 		wp_enqueue_script( 'jquery' );
-		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery' ), '0.1', true );
+		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery' ), '1.1', true );
 		wp_enqueue_script( 'bike-theme-script' );
-		//wp_localize_script( 'bike-theme-script', 'bikeAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'nonce' => wp_create_nonce( 'bike_update' ) ) );
 		wp_register_script( 'masonry-script', get_template_directory_uri() . '/js/jquery.masonry.min.js', array( 'jquery' ), '2.1.07', true );
 		wp_enqueue_script( 'masonry-script' );
 	endif;
@@ -158,7 +156,7 @@ add_action( 'wp_enqueue_scripts', 'bike_scripts_styles' );
 /**
  * Insert HTML5 extras
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_html5extras() {
 	echo '<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />' . "\n";
@@ -169,7 +167,7 @@ add_action( 'wp_head', 'bike_html5extras', 1 );
 /**
  * Insert HTML5 shiv
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_html5shiv() {
 	echo '<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->' . "\n";
@@ -179,7 +177,7 @@ add_action( 'wp_head', 'bike_html5shiv' );
 /**
  * Insert custom pingback
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
  // Pingback
 function bike_pingback() {
@@ -188,41 +186,21 @@ function bike_pingback() {
 add_action( 'wp_head', 'bike_pingback' );
 
 /**
- * Insert favicon and iPhone homescreen icons
+ * Insert Custom header
  *
- * @since BIKE 0.1
+ * @since BIKE 1.1
  */
-function bike_icons() {
-	echo '<link rel="shortcut icon" href="' . get_template_directory_uri() . '/favicon.gif" sizes="16x16" type="image/gif" />' . "\n";
-	echo '<link rel="icon" href="' . get_template_directory_uri() . '/favicon.gif" sizes="16x16" type="image/gif" />';
-	echo '<link rel="apple-touch-icon-precomposed" sizes="144x144" href="' . get_template_directory_uri() . '/images/apple-touch-icon-144x144.png" />' . "\n";
-	echo '<link rel="apple-touch-icon-precomposed" sizes="114x114" href="' . get_template_directory_uri() . '/images/apple-touch-icon-114x114.png" />' . "\n";
-	echo '<link rel="apple-touch-icon-precomposed" sizes="72x72" href="' . get_template_directory_uri() . '/images/apple-touch-icon-72x72.png" />' . "\n";
-	echo '<link rel="apple-touch-icon-precomposed" href="' . get_template_directory_uri() . '/images/apple-touch-icon-57x57.png" />' . "\n";
+function bike_customheader() {
+	echo '<style id="custom-bike-header-css">' . "\n";
+	echo 'header#top { background-image: url(' . get_header_image() . '); }' . "\n";
+	echo '</style>' . "\n";
 }
-//add_action( 'wp_head', 'bike_icons', 15 );
-
-/**
- * Insert Open Graph tags
- *
- * @since BIKE 0.1
- */
-function bike_opengraph() {
-	if ( !class_exists( WPSEO_OpenGraph ) ) :
-		echo '<meta property="og:image" content="' . get_template_directory_uri() . '/images/logo-facebook-200x200.jpg" />' . "\n";
-		echo '<meta property="og:title" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
-		echo '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '" />' . "\n";
-		echo '<meta property="og:url" content="' . get_permalink() . '" />' . "\n";
-		echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
-	endif;
-	echo '<link rel="image_src" href="' . get_template_directory_uri() . '/images/logo-facebook-200x200.jpg" />' . "\n";
-}
-//add_action( 'wp_head', 'bike_opengraph', 2 );
+add_action( 'wp_head', 'bike_customheader' );
 
 /**
  * Add support for widgets
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_widgets_init() {
 	register_sidebar( array(
@@ -232,15 +210,6 @@ function bike_widgets_init() {
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>',
-		'after_widget' => '</aside>',
-	) );
-	register_sidebar( array(
-		'name' => __( 'Sidebar (forum)', 'bike' ),
-		'id' => 'sidebar-forum-left',
-		'description' => __( 'Benyttes til at inds&aelig;tte indhold i venstre side under undermenu p&aring; side under forum.', 'bike' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'before_title' => '<h1>',
-		'after_title' => '</h1>',
 		'after_widget' => '</aside>',
 	) );
 	register_sidebar( array(
@@ -258,7 +227,7 @@ add_action( 'widgets_init', 'bike_widgets_init' );
 /**
  * Add even or odd classes to posts
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_post_class ( $classes ) {
 	$classes[] = ( $post_class++ % 2 ) ? 'post-even' : 'post-odd';
@@ -269,7 +238,7 @@ add_filter( 'post_class' , 'bike_post_class' );
 /**
  * Customize the excerpt
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_excerpt_length( $length ) {
 	return rand( 60, 70 );
@@ -288,7 +257,7 @@ add_filter( 'get_the_excerpt', 'bike_custom_excerpt_more' );
 /**
  * Add blockquote tag to quote post formats
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_quote_content( $content ) {
 	if ( has_post_format( 'quote' ) ) :
@@ -304,7 +273,7 @@ add_filter( 'the_content', 'bike_quote_content' );
 /**
  * Add the infinity character to aside and status post formats
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_infinity_and_beyond( $content ) {
 	if ( has_post_format( 'aside' ) && !is_singular() || has_post_format( 'status' ) && !is_singular() ) :
@@ -317,7 +286,7 @@ add_filter( 'the_content', 'bike_infinity_and_beyond', 9 );
 /**
  * Change the permalink on link post formats
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_link_title( $link, $post ) {
 	if ( has_post_format( 'link', $post ) && get_post_meta( $post->ID, 'post_format_link_url', true ) ) :
@@ -330,7 +299,7 @@ add_filter( 'post_link', 'bike_link_title', 10, 2 );
 /**
  * Custom pagination
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_pagination() {
 	global $wp_query;			
@@ -350,7 +319,7 @@ function bike_pagination() {
 /**
  * Customize the wp_link_pages output
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_custom_wp_link_pages( $args ) {
 	if ( $args['next_or_number'] == 'next_and_number' ) :
@@ -388,7 +357,7 @@ add_filter( 'wp_link_pages_args', 'bike_custom_wp_link_pages' );
 /**
  * Enable threaded comments
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_comments_reply() {
 	if ( !is_admin() ) :
@@ -402,7 +371,7 @@ add_action( 'comment_form_before', 'bike_comments_reply' );
 /**
  * Customize the comment template output
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
@@ -461,7 +430,7 @@ function bike_comment( $comment, $args, $depth ) {
 /**
  * Customize the comment form
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_comment_form_logged_in( $default ) {
 	global $current_user;
@@ -516,7 +485,7 @@ add_action( 'comment_form_after_fields', 'bike_comment_form_after_fields' );
 /**
  * Get the page number (for blog and category pages)
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function get_page_number() {
 	if ( get_query_var( 'paged' ) ) :
@@ -527,7 +496,7 @@ function get_page_number() {
 /**
  * Customize the title tag
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_custom_title( $title ) {
 	if ( is_feed() ) :
@@ -570,7 +539,7 @@ add_filter( 'wp_title', 'bike_custom_title' );
 /**
  * Customize the thumbnail HTML output
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 function bike_post_image_html( $html, $post_id, $post_image_id ) {
 	if ( is_single() ) :
@@ -586,73 +555,6 @@ add_filter( 'post_thumbnail_html', 'bike_post_image_html', 10, 3 );
 /**
  * Remove the inline style from the gallery shortcode
  *
- * @since BIKE 0.1
+ * @since BIKE 1.0
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
-
-
-
-// Edited to here...
-
-
-function cleaner_caption( $output, $attr, $content ) {
-	if ( is_feed() )
-		return $output;
-
-	$defaults = array(
-		'id' => '',
-		'align' => 'alignnone',
-		'width' => '',
-		'caption' => ''
-	);
-
-	$attr = shortcode_atts( $defaults, $attr );
-
-	if ( 1 > $attr['width'] || empty( $attr['caption'] ) )
-		return $content;
-
-	$attributes = ( !empty( $attr['id'] ) ? ' id="' . esc_attr( $attr['id'] ) . '"' : '' );
-	$attributes .= ' class="wp-caption ' . esc_attr( $attr['align'] ) . '"';
-	$attributes .= ' style="width: ' . esc_attr( $attr['width'] ) . 'px"';
-
-	return $output = '<div' . $attributes .'>' . do_shortcode( $content ) . '<p class="wp-caption-text">' . $attr['caption'] . '</p></div>';
-}
-add_filter( 'img_caption_shortcode', 'cleaner_caption', 10, 3 );
-
-
-// Example 2
-function remove_page_from_query_string( $query_string ) { 
-	if ( $query_string['name'] == 'page' && isset( $query_string['page'] ) ) :
-		unset( $query_string['name'] );
-		// 'page' in the query_string looks like '/2', so split it out
-		list( $delim, $page_index ) = split( '/', $query_string['page'] );
-		$query_string['paged'] = $page_index;
-	endif;
-	return $query_string;
-}
-add_filter( 'request', 'remove_page_from_query_string' );
-
-// Example 2
-function fix_page_in_category_from_query_string( $query_string ) {
-	//Check to see if the 'p' and 'category_name' are set in $query_string 
-	if ( isset( $query_string['category_name'] ) && isset( $query_string['p'] ) ) {
-		$category_name = $query_string['category_name'];
-		$category_len = $category_name; 
-		
-		//Check to see if the 'category_name' has '/page' on the end of it
-		if ( substr( $category_name, $category_len-5, 5 ) == '/page' ) {
-		
-			//Remove '/page' from the end of 'category_name'
-			$query_string['category_name'] = substr( $query_string['category_name'], 0, $category_len-5 );
-		
-			//Set 'paged' equal to the page you want to go to
-			$query_string['paged'] = $query_string['p'];
-		
-			//Unset 'p' since we don't need it anymore because we set 'paged' instead
-			unset( $query_string['p'] );
-		}
-	}
-	return $query_string;
-}
-
-add_filter( 'request', 'fix_page_in_category_from_query_string' );

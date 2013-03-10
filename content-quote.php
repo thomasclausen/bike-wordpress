@@ -13,6 +13,6 @@
 					<div class="content">
 						<?php the_content(); ?>
 					</div>
-					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => 'Direkte link til "', 'after' => '"' ) ); ?>">&mdash; <?php the_title(); ?></a></h2>
+					<h2><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => __( 'Direkte link til "', 'bike' ), 'after' => '"' ) ); ?>">&mdash; <?php the_title(); ?></a></h2>
 				<?php endif; ?>
 			</article>

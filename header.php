@@ -9,12 +9,8 @@
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta http-equiv="content-type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 <meta name="description" content="<?php bloginfo( 'description' ); ?>" />
+
 <?php wp_head(); ?>
-
-<style type="text/css" id="custom-bike-header-css">
-header#top { background-image: url(<?php header_image(); ?>); }
-</style>
-
 </head>
 
 <body <?php body_class(); ?>>

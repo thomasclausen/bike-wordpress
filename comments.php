@@ -2,7 +2,7 @@
 	die ( 'Please do not load this page directly. Thanks!' );
 endif;
 if ( post_password_required() && have_comments() ) {
-	_e( 'This post is password protected. Enter the password to view any comments.', 'thomasclausen' );
+	_e( 'Denne nyhed er kodeordsbeskyttet. Indtast kodeordet for at se kommentarer.', 'bike' );
 	return;
 } ?>
 
@@ -14,13 +14,13 @@ if ( post_password_required() && have_comments() ) {
 		</ol>
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 			<nav class="pagination comments clearfix">
-				<div class="alignleft"><?php previous_comments_link( __( '&larr; Older Comments', 'bike' ) ); ?></div>
-				<div class="alignright"><?php next_comments_link( __( 'Newer Comments &rarr;', 'bike' ) ); ?></div>
+				<div class="alignleft"><?php previous_comments_link( __( '&larr; &AElig;ldre kommentarer', 'bike' ) ); ?></div>
+				<div class="alignright"><?php next_comments_link( __( 'Nyere kommentarer &rarr;', 'bike' ) ); ?></div>
 			</nav>
 		<?php endif; ?>
 	<?php else : ?>
 		<?php if ( !comments_open() && !is_page() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-			<p class="notice"><?php _e( 'Comments are closed.', 'bike' ); ?></p>
+			<p class="notice"><?php _e( 'Det er ikke muligt at kommentere denne nyhed.', 'bike' ); ?></p>
 		<?php endif; ?>
 	<?php endif; ?>
 	<?php if ( comments_open() ) :
@@ -29,8 +29,5 @@ if ( post_password_required() && have_comments() ) {
 		else:
 			comment_form( array( 'comment_notes_before' => '', 'comment_notes_after' => '', 'title_reply' => '', 'title_reply_to' => '', 'cancel_reply_link' => __( 'Annuller svar', 'bike' ), 'label_submit' => __( 'Send kommentar', 'bike' ) ) );
 		endif;
-		//echo '<div id="solo-comment-subscribe">' . show_manual_subscription_form() . '</div>';
-	else : // Comments are closed ?>
-		<!-- <p><?php _e( 'Sorry, the comment form is closed at this time.', 'bike' ); ?></p> -->
-	<?php endif; ?>
+	endif; ?>
 </div>

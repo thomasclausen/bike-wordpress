@@ -1,5 +1,5 @@
-	<section id="sidebar" class="<?php echo ( is_post_type_archive( 'forum' ) || is_singular( array( 'forum', 'topic', 'reply' ) ) ? 'forum ' : ''); ?>clearfix">
-		<?php if ( is_page() || is_search() ) : ?>
+	<section id="sidebar" class="clearfix">
+		<?php if ( is_page() ) : ?>
 			<?php if ( ! $post->post_parent ) :
 				// will display the subpages of this top level page
 				$children = wp_list_pages( 'child_of=' . $post->ID . '&sort_column=menu_order&title_li=&echo=0' );
@@ -21,7 +21,7 @@
 				</nav>
 			<?php endif; ?>
 
-			<?php if ( is_active_sidebar( 'sidebar-left' ) ) : ?>
+			<?php if ( is_active_sidebar( 'sidebar-left' ) && !is_page_template( 'page-full-width.php' ) ) : ?>
 				<?php dynamic_sidebar( 'sidebar-left' ); ?>
 			<?php endif; ?>
 		<?php elseif ( is_attachment() ) : ?>
@@ -39,13 +39,13 @@
 				$shutter_speed     = $imagemeta['image_meta']['shutter_speed'];
 				$title             = $imagemeta['image_meta']['title']; */
 				if ( $imagemeta['width'] && $imagemeta['height'] ) {
-					echo '<div class="image-size"><strong>Fuld st&oslash;rrelse:</strong> ' . $imagemeta['width'] . ' x ' . $imagemeta['height'] . ' pixels</div>';
+					echo '<div class="image-size"><strong>' . __( 'Fuld st&oslash;rrelse:', 'bike' ) . '</strong> ' . $imagemeta['width'] . ' x ' . $imagemeta['height'] . ' ' . __( 'pixels', 'bike' ) . '</div>';
 				}
 				if ($imagemeta['image_meta']['camera']) {
-					echo '<div class="camera"><strong>Kamera:</strong> ' . $imagemeta['image_meta']['camera'] . '</div>';
+					echo '<div class="camera"><strong>' . __( 'Kamera:', 'bike' ) . '</strong> ' . $imagemeta['image_meta']['camera'] . '</div>';
 				}
 				if ($imagemeta['image_meta']['aperture']) {
-					echo '<div class="aperature"><strong>Bl&aelig;nde:</strong> F' . $imagemeta['image_meta']['aperture'] . '</div>';
+					echo '<div class="aperature"><strong>' . __( 'Bl&aelig;nde:', 'bike' ) . '</strong> F' . $imagemeta['image_meta']['aperture'] . '</div>';
 				}
 				if ($imagemeta['image_meta']['created_timestamp']) {
 					function time_stamp( $session_time ) { 
@@ -59,58 +59,54 @@
 						$years = round($time_difference / 29030400 ); 
 						
 						if ( $seconds <= 60 ) { // Seconds
-							if ( $seconds == 1 ) { return "1 sekund siden"; } else { return "$seconds sekunder siden"; }
+							if ( $seconds == 1 ) { return __( '1 sekund siden', 'bike' ); } else { return sprintf( __( '%s sekunder siden', 'bike' ), $seconds); }
 						} elseif ( $minutes <= 60 ) { //Minutes
-							if ( $minutes == 1 ) { return "1 minut siden"; } else { return "$minutes minutter siden"; }
+							if ( $minutes == 1 ) { return __( '1 minut siden', 'bike' ); } else { return sprintf( __( '%s minutter siden', 'bike' ), $minutes); }
 						} elseif ( $hours <= 24 ) { //Hours
-							if ( $hours == 1 ) { return "1 time siden"; } else { return "$hours timer siden"; }
+							if ( $hours == 1 ) { return __( '1 time siden', 'bike' ); } else { return sprintf( __( '%s timer siden', 'bike' ), $hours); }
 						} else if($days <= 7) { //Days
-							if ( $days == 1 ) { return "1 dag siden"; } else { return "$days dage siden"; }
+							if ( $days == 1 ) { return __( '1 dag siden', 'bike' ); } else { return sprintf( __( '%s dage siden', 'bike' ), $days); }
 						} else if($weeks <= 4) { //Weeks
-							if( $weeks == 1 ) { return "1 uge siden"; } else { return "$weeks uger siden"; }
+							if( $weeks == 1 ) { return __( '1 uge siden', 'bike' ); } else { return sprintf( __( '%s uger siden', 'bike' ), $weeks); }
 						} elseif ( $months <= 12 ) { //Months
-							if ( $months == 1 ) { return "1 m&aring;ned siden"; } else { return "$months m&aring;neder siden"; }
+							if ( $months == 1 ) { return __( '1 m&aring;ned siden', 'bike' ); } else { return sprintf( __( '%s m&aring;neder siden', 'bike' ), $months); }
 						} else { //Years
-							if ( $years == 1 ) { return "1 &aring;r siden"; } else { return "$years &aring;r siden"; }
+							if ( $years == 1 ) { return __( '1 &aring;r siden', 'bike' ); } else { return sprintf( __( '%s &aring;r siden', 'bike' ), $years); }
 						}
 					} 
-					echo '<div class="image-date"><strong>Billedet er taget:</strong> ' . time_stamp( $imagemeta['image_meta']['created_timestamp'] ) . ' (' . date( 'H:i:s d/m/y', $imagemeta['image_meta']['created_timestamp'] ) . ')</div>';
+					echo '<div class="image-date"><strong>' . __( 'Billedet er taget:', 'bike' ) . '</strong> ' . time_stamp( $imagemeta['image_meta']['created_timestamp'] ) . ' (' . date( 'H:i:s - d/m/y', $imagemeta['image_meta']['created_timestamp'] ) . ')</div>';
 				}
 				if ($imagemeta['image_meta']['focal_length']) {
-					echo '<div class="focal-length"><strong>Br&aelig;ndvidde:</strong> ' . $imagemeta['image_meta']['focal_length'] . ' mm</div>';
+					echo '<div class="focal-length"><strong>' . __( 'Br&aelig;ndvidde:', 'bike' ) . '</strong> ' . $imagemeta['image_meta']['focal_length'] . ' mm</div>';
 				}
 				if ($imagemeta['image_meta']['iso']) {
-					echo '<div class="iso"><strong>ISO:</strong> ' . $imagemeta['image_meta']['iso'] . '</div>';
+					echo '<div class="iso"><strong>' . __( 'ISO:', 'bike' ) . '</strong> ' . $imagemeta['image_meta']['iso'] . '</div>';
 				}
 				if ($imagemeta['image_meta']['shutter_speed']) {
-					echo '<div class="shutter-speed"><strong>Lukkehastighed:</strong> ';
+					echo '<div class="shutter-speed"><strong>' . __( 'Lukkehastighed:', 'bike' ) . '</strong> ';
 
 					// shutter speed handler
 					if ( ( 1 / $imagemeta['image_meta']['shutter_speed'] ) > 1 ) {
 						echo "1/";
 						if ( number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1 ) ==  number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0 ) ) {
-							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . ' sec</div>';
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . ' sek.</div>';
 						} else {
-							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . ' sec</div>';
+							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . ' sek.</div>';
 						}
 					} else {
-						echo $imagemeta['image_meta']['shutter_speed'] . ' sec</div>';
+						echo $imagemeta['image_meta']['shutter_speed'] . ' sek.</div>';
 					}
 				}
 				if ( $imagemeta['image_meta']['credit'] ) {
-					echo '<div class="credit"><strong>Fotograf:</strong> ' . $imagemeta['image_meta']['credit'] . '</div>';
+					echo '<div class="credit"><strong>' . __( 'Fotograf:', 'bike' ) . '</strong> ' . $imagemeta['image_meta']['credit'] . '</div>';
 				}
 				if ( $imagemeta['image_meta']['copyright'] ) {
-					echo '<div class="copyright"><strong>Copyright:</strong> ' . $imagemeta['image_meta']['copyright'] . '</div>';
+					echo '<div class="copyright"><strong>' . __( 'Copyright:', 'bike' ) . '</strong> ' . $imagemeta['image_meta']['copyright'] . '</div>';
 				} ?>
 				<div class="comments"><a href="#comments"><?php comments_number( __( 'Ingen kommentarer', 'bike' ), __( '1 kommentar', 'bike' ), __( '% kommentarer', 'bike' ) );?></a></div>
-				<?php edit_post_link( 'Rediger billede', '<div class="edit-link">', '</div>' ); ?>
+				<?php edit_post_link( __( 'Rediger billede', 'bike' ), '<div class="edit-link">', '</div>' ); ?>
 			</div>
-			<?php echo '<a href="' . get_permalink( $post->post_parent ) . '">&laquo; Tilbage til "' . get_the_title( $post->post_parent ) . '"</a>'; ?>
-		<?php elseif ( is_post_type_archive( 'forum' ) || is_singular( array( 'forum', 'topic', 'reply' ) ) ) : ?>
-			<?php if ( is_active_sidebar( 'sidebar-forum-left' ) ) : ?>
-				<?php dynamic_sidebar( 'sidebar-forum-left' ); ?>
-			<?php endif; ?>
+			<?php echo '<a href="' . get_permalink( $post->post_parent ) . '">' . __( '&laquo; Tilbage til "', 'bike' ) . get_the_title( $post->post_parent ) . '"</a>'; ?>
 		<?php else : ?>
 			<?php if ( get_post_format() ) :
 				$post_meta_class = ' ' . get_post_format();
@@ -144,14 +140,14 @@
 					$bike_post_format = __( 'Indl&aelig;g', 'bike' );
 				endif; ?>
 				<?php if ( get_post_format() ) : ?>
-					<div class="format">Type: <?php printf( '<a href="%s" title="%s">%s</a>', esc_url( get_post_format_link( get_post_format() ) ), esc_attr( $bike_post_format_title ), $bike_post_format ); ?></div>
+					<div class="format"><?php _e( 'Type:', 'bike' ); ?> <?php printf( '<a href="%s" title="%s">%s</a>', esc_url( get_post_format_link( get_post_format() ) ), esc_attr( $bike_post_format_title ), $bike_post_format ); ?></div>
 				<?php else : ?>
-					<div class="format">Type: <?php echo $bike_post_format; ?></div>
+					<div class="format"><?php _e( 'Type:', 'bike' ); ?> <?php echo $bike_post_format; ?></div>
 				<?php endif; ?>
 				<div class="comments"><a href="#comments"><?php comments_number( __( 'Ingen kommentarer', 'bike' ), __( '1 kommentar', 'bike' ), __( '% kommentarer', 'bike' ) );?></a></div>
-				<div class="categories">Kategorier: <?php the_category( ', ' ); ?></div>
-				<div class="tags">Emner: <?php the_tags( '', ', ' ); ?></div>
-				<?php edit_post_link( 'Rediger nyhed', '<div class="edit-link">', '</div>' ); ?>
+				<div class="categories"><?php _e( 'Kategorier:', 'bike' ); ?> <?php the_category( ', ' ); ?></div>
+				<div class="tags"><?php _e( 'Emner:', 'bike' ); ?> <?php the_tags( '', ', ' ); ?></div>
+				<?php edit_post_link( __( 'Rediger nyhed', 'bike' ), '<div class="edit-link">', '</div>' ); ?>
 			</div>
 		<?php endif; ?>
 	</section>
