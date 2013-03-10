@@ -2,7 +2,7 @@
 	$(document).ready(function(){
 		$('html').removeClass('no-js');
 
-		$('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content').masonry({
+		$('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content, .archive.author section#content').masonry({
 			itemSelector: 'article.post'
 		});
 
