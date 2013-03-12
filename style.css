@@ -62,6 +62,8 @@ textarea.focus,
 select.focus,
 button.focus { border-color: #999; outline: none; }
 textarea { overflow: auto; }
+input#s,
+input[type=search] { -webkit-appearance: none; }
 input.checkbox,
 input[type=checkbox],
 input.radio,
