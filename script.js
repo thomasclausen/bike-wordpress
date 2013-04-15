@@ -2,8 +2,11 @@
 	$(document).ready(function(){
 		$('html').removeClass('no-js');
 
-		$('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content, .archive.author section#content').masonry({
-			itemSelector: 'article.post'
+		var $container = $('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content, .archive.author section#content');
+		$container.imagesLoaded(function(){
+			$container.masonry({
+				itemSelector : 'article.post'
+			});
 		});
 
 		$('#respond #reply-title a#cancel-comment-reply-link').insertBefore($('#respond h3')).removeAttr('style');
