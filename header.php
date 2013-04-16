@@ -14,15 +14,15 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<header id="top" class="clearfix">
-		<hgroup<?php if ( get_bloginfo( 'description' ) ) : echo ' class="description" '; endif; ?>>
+	<div class="header-wrap<?php if ( get_bloginfo( 'description' ) ) : echo ' description'; endif; ?> clearfix">
+		<header>
 			<div id="logo"><a href="<?php echo home_url(); ?>" title="<?php bloginfo( 'name' ); ?>" rel="home"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt="<?php bloginfo( 'name' ); ?>" /></a></div>
 			<h1><a href="<?php echo home_url(); ?>" title="<?php bloginfo( 'name' ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<?php if ( get_bloginfo( 'description' ) ) : ?>
 				<p class="description"><?php bloginfo( 'description' ); ?></p>
 			<?php endif; ?>
-		</hgroup>
-	</header>
+		</header>
+	</div>
 	<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'clearfix', 'fallback_cb' => 'fallback_mainmenu', 'before' => '<span class="seperator"></span>', 'items_wrap' => '<span class="nav-before"></span><ul class="%2$s">%3$s</ul><span class="nav-after"></span>' ) ); ?>
 	<div id="main" class="clearfix">
 		<div class="header-spacer"></div>
