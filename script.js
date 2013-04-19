@@ -1,9 +1,15 @@
-(function($) {
-	$(document).ready(function(){
+(function ($) {
+	$(document).ready(function () {
 		$('html').removeClass('no-js');
 
-		var $container = $('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content, .archive.author section#content');
-		$container.imagesLoaded(function(){
+		var $container = $('.blog section#content, .archive.category section#content, .archive.date section#content, .archive.tag section#content, .archive.tax-post_format section#content, .archive.author section#content'),
+            speed = 400,
+			commentlist = $('#comments .commentlist'),
+			respond = $('#comments #respond'),
+			respond_title = $('h3', respond).text(),
+			services = $('.comment-form-identity', respond);
+        
+		$container.imagesLoaded(function () {
 			$container.masonry({
 				itemSelector : 'article.post'
 			});
@@ -13,38 +19,32 @@
 		$('#respond #reply-title small').remove();
 		$('.reply a', commentlist).removeAttr('onclick');
 		
-		var speed = 400,
-			commentlist = $('#comments .commentlist'),
-			respond = $('#comments #respond'),
-			respond_title = $('h3', respond).text(),
-			services = $('.comment-form-identity', respond);
-
-		$('.reply a', commentlist).click(function(e) {
+		$('.reply a', commentlist).click(function (e) {
 			if ($(this).parent().siblings('.children').length > 0) {
 				$(this).parent().siblings('.children').before(respond);
 			} else {
 				$(this).parent().parent().after(respond);
 			}
 			$('#comment_parent', respond).val($(this).parent().parent().attr('id').replace('comment-', ''));
-			$('#cancel-comment-reply-link', respond).fadeIn(speed/2);
+			$('#cancel-comment-reply-link', respond).fadeIn(speed / 2);
 			$('h3', respond).text(respond_title + ' til ' + $(this).parent().siblings('header').find('.author').text());
 			e.preventDefault();
 		});
 		
-		$('#cancel-comment-reply-link', respond).click(function(e) {
+		$('#cancel-comment-reply-link', respond).click(function (e) {
 			commentlist.after(respond);
 			$('#cancel-comment-reply-link', respond).hide();
 			$('h3', respond).text(respond_title);
 			e.preventDefault();
 		});
 
-		$('.comment-form-comment textarea#comment', respond).one('focus', function() {
+		$('.comment-form-comment textarea#comment', respond).one('focus', function () {
 			$('.comment-form-comment textarea#comment', respond).animate({height: '150px'}, speed);
 			services.slideDown(speed);
 			$('.comment-form-actions', respond).slideDown(speed);
 		});
 
-		$('fieldset input, fieldset textarea, fieldset select', respond).focusout(function() {
+		$('fieldset input, fieldset textarea, fieldset select', respond).focusout(function () {
 			if ($(this).val()) {
 				$(this).addClass('focus');
 			} else {
@@ -52,7 +52,7 @@
 			}
 		});
 
-		$('.comment-form-email input#email', respond).focusout(function() {
+		$('.comment-form-email input#email', respond).focusout(function () {
 			$('#comment-form-identity-guest .comment-form-avatar img', respond).attr('src', 'http://www.gravatar.com/avatar/' + MD5($('.comment-form-email input#email', respond).val()) + '?s=25&d=mm');
 		});
 
@@ -257,5 +257,3 @@
 		};
 	});
 })(jQuery);
-
-jQuery.noConflict();
