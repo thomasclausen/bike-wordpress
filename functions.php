@@ -4,7 +4,7 @@
  *
  * @package BIKE
  * @since BIKE 1.0
- * @last_updated BIKE 1.3
+ * @last_updated BIKE 1.4
  */
 
 
@@ -136,19 +136,19 @@ remove_action( 'wp_head', 'feed_links_extra', 3 );
  * Enqueue scripts and styles
  *
  * @since BIKE 1.0
- * @last_updated BIKE 1.3
+ * @last_updated BIKE 1.4
  */
 function bike_scripts_styles() {
 	wp_register_style( 'reset-html5', get_template_directory_uri() . '/reset-html5.css', false, '1.0' );
 	wp_enqueue_style( 'reset-html5' );
-	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', false, '1.3' );
+	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', false, '1.4' );
 	wp_enqueue_style( 'bike-theme' );
 	if ( ! is_404() ) :
 		wp_deregister_script( 'comment-reply' );
 		wp_enqueue_script( 'jquery' );
 		wp_register_script( 'masonry-script', get_template_directory_uri() . '/js/jquery.masonry.min.js', array( 'jquery' ), '2.1.07', true );
 		wp_enqueue_script( 'masonry-script' );
-		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery', 'masonry-script' ), '1.3', true );
+		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery', 'masonry-script' ), '1.4', true );
 		wp_enqueue_script( 'bike-theme-script' );
 	endif;
 }
@@ -197,6 +197,21 @@ function bike_customheader() {
 	echo '</style>' . "\n";
 }
 add_action( 'wp_head', 'bike_customheader' );
+
+/**
+ * Insert Open Graph tags
+ *
+ * @since BIKE 1.4
+ */
+function bike_opengraph() {
+	if ( !class_exists( WPSEO_OpenGraph ) ) :
+		echo '<meta property="og:title" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
+		echo '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '" />' . "\n";
+		echo '<meta property="og:url" content="' . get_permalink() . '" />' . "\n";
+		echo '<meta property="og:site_name" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />' . "\n";
+	endif;
+}
+add_action( 'wp_head', 'bike_opengraph', 2 );
 
 /**
  * Add support for widgets
