@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 
 <head>
-<title><?php wp_title( '', true, 'right' ); ?></title>
+<title><?php wp_title( '&bull;', true, 'right' ); ?></title>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta http-equiv="content-type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
 <meta name="description" content="<?php bloginfo( 'description' ); ?>" />

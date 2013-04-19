@@ -4,7 +4,7 @@ Theme URI: http://vodskovmotionscykelclub.dk/
 Description: Dette WordPress tema er designet til Vodskov Motion Cykel Club.
 Author: Thomas Clausen
 Author URI: http://www.thomasclausen.dk/
-Version: 1.4
+Version: 1.5
 Tags: red
 
 Like WordPress, this work (The CSS, XHTML and design) is released under GNU General Public License, version 2 (GPL).
@@ -131,8 +131,9 @@ section#sidebar nav.submenu ul { }
 section#sidebar nav.submenu ul li { font-size: 16px; line-height: 40px; color: #333; border-bottom: 1px solid rgba(104, 104, 104, 0.2); }
 section#sidebar nav.submenu ul li:hover,
 section#sidebar nav.submenu ul li:focus,
-section#sidebar nav.submenu ul li.current_page_item { background: url(images/submenu-li-current-bg.png) no-repeat 100% 50%; }
+section#sidebar nav.submenu ul li.current_page_item { background: url(images/submenu-li-current-bg.png) no-repeat 100% 13px; }
 section#sidebar nav.submenu ul li a { color: #333; text-decoration: none; display: block; }
+section#sidebar nav.submenu ul ul li { padding-left: 20px; border-top: 1px solid rgba(104, 104, 104, 0.2); border-bottom: none; }
 section#sidebar .post-meta { width: 300px; color: #a0a0a0; border-top: 3px solid #686868; margin-bottom: 34px; }
 section#sidebar .post-meta.aside,
 section#sidebar .post-meta.status,
@@ -263,8 +264,9 @@ article.searchform input[type=submit] { width: 105px; margin-top: 0; }
 /* SEARCH */
 article.searchlist { padding: 19px; background: #fff; border: 1px solid #d8d8d8; border-top: none; }
 article.searchlist ul.results { list-style: none; padding-left: 0; margin-bottom: 0; }
-article.searchlist ul.results li { padding-top: 11px; padding-left: 0; background: url(images/dotted.gif) repeat-x; margin-top: 10px; margin-left: 0; }
-article.searchlist ul.results li:first-child { padding-top: 0; background: none; margin-top: 0; }
+article.searchlist ul.results li { padding-bottom: 14px; padding-left: 0; background: url(images/dotted.gif) repeat-x 0 100%; margin-bottom: 10px; margin-left: 0; }
+article.searchlist h2 { margin-bottom: 8px; }
+article.searchlist h2 a { text-decoration: none; color: #cc242c; }
 article.searchlist p { margin-bottom: 0; }
 
 /* SINGLE */
@@ -293,6 +295,7 @@ article.attachment .post-meta a { color: #686868; text-decoration: none; }
 /* PAGINATION - ARCHIVE */
 nav.pagination.post-links { clear: both; }
 .masonry nav.pagination.post-links { width: 940px; margin-right: 10px; margin-left: 10px; position: absolute; top: 100%; left: 0; }
+.search nav.pagination.post-links { margin-top: 20px; }
 nav.pagination.post-links ul { width: 100%; text-align: center; }
 nav.pagination.post-links ul li { font-size: 16px; line-height: 30px; color: #333; text-transform: uppercase; margin-left: 1px; display: inline; }
 nav.pagination.post-links ul li:first-child { margin-left: 0; }

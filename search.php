@@ -15,7 +15,7 @@
 			</article>
 		<?php else : ?>
 			<article class="searchlist clearfix">
-				<?php _e( 'Din s&oslash;gning gav intet resultat...', 'bike' ); ?>
+				<p><em><?php _e( 'Din s&oslash;gning gav intet resultat...', 'bike' ); ?></em></p>
 			</article>
 		<?php endif; ?>
 	</section>
