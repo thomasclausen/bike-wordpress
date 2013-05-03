@@ -196,6 +196,8 @@ article.forum,
 article.topic { padding: 29px 29px 9px 29px; background: #fff; border: 1px solid #d8d8d8; }
 .home article.page { padding: 0; background: none; border: none; }
 
+article.sticky { }
+
 article.post,
 article.attachment { margin-bottom: 20px; position: relative; }
 .blog article.post,
