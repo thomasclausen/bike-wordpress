@@ -4,7 +4,7 @@
  *
  * @package BIKE
  * @since BIKE 1.0
- * @last_updated BIKE 1.5
+ * @last_updated BIKE 1.6
  */
 
 
@@ -68,6 +68,17 @@ if ( ! function_exists( 'bike_setup' ) ) :
 			'uploads' => true
 		);
 		add_theme_support( 'custom-header', $defaults );
+
+		/**
+		 * Add support for custom background
+		 *
+		 * @since BIKE 1.6
+		 */
+		$defaults = array(
+			'default-color' => '',
+			'default-image' => get_template_directory_uri() . '/images/body-bg.png'
+		);
+		add_theme_support( 'custom-background', $defaults );
 
 		/**
 		 * Add support for post thumbnails and set size
@@ -141,14 +152,14 @@ remove_action( 'wp_head', 'feed_links_extra', 3 );
 function bike_scripts_styles() {
 	wp_register_style( 'reset-html5', get_template_directory_uri() . '/reset-html5.css', false, '1.0' );
 	wp_enqueue_style( 'reset-html5' );
-	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', false, '1.5' );
+	wp_register_style( 'bike-theme', get_template_directory_uri() . '/style.css', array( 'reset-html5' ), '1.6' );
 	wp_enqueue_style( 'bike-theme' );
 	if ( ! is_404() ) :
 		wp_deregister_script( 'comment-reply' );
 		wp_enqueue_script( 'jquery' );
 		wp_register_script( 'masonry-script', get_template_directory_uri() . '/js/jquery.masonry.min.js', array( 'jquery' ), '2.1.07', true );
 		wp_enqueue_script( 'masonry-script' );
-		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery', 'masonry-script' ), '1.5', true );
+		wp_register_script( 'bike-theme-script', get_template_directory_uri() . '/script.js', array( 'jquery', 'masonry-script' ), '1.6', true );
 		wp_enqueue_script( 'bike-theme-script' );
 	endif;
 }
@@ -190,14 +201,14 @@ add_action( 'wp_head', 'bike_pingback' );
  * Insert Custom header
  *
  * @since BIKE 1.1
- * @last_updated BIKE 1.3
+ * @last_updated BIKE 1.6
  */
-function bike_customheader() {
-	echo '<style id="custom-bike-header-css">' . "\n";
+function bike_custom_header() {
+	echo '<style id="bike-custom-header-css">' . "\n";
 	echo '.header-wrap { background-image: url(' . get_header_image() . '); }' . "\n";
 	echo '</style>' . "\n";
 }
-add_action( 'wp_head', 'bike_customheader' );
+add_action( 'wp_head', 'bike_custom_header' );
 
 /**
  * Insert Open Graph tags
