@@ -57,15 +57,14 @@ if ( ! function_exists( 'bike_setup' ) ) :
 		 * Add support for custom header
 		 *
 		 * @since BIKE 1.0
+		 * @last_updated BIKE 1.6
 		 */
 		$defaults = array(
 			'default-image' => get_template_directory_uri() . '/images/header.jpg',
-			'random-default' => false,
 			'width' => 1600,
 			'height' => 142,
 			'flex-width' => true,
-			'header-text' => false,
-			'uploads' => true
+			'header-text' => false
 		);
 		add_theme_support( 'custom-header', $defaults );
 
@@ -75,7 +74,6 @@ if ( ! function_exists( 'bike_setup' ) ) :
 		 * @since BIKE 1.6
 		 */
 		$defaults = array(
-			'default-color' => '',
 			'default-image' => get_template_directory_uri() . '/images/body-bg.png'
 		);
 		add_theme_support( 'custom-background', $defaults );
