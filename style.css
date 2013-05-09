@@ -116,8 +116,8 @@ select,
 button {
 	width: 100%;
 	font-family: inherit;
-    font-size: 100%;
-    line-height: inherit;
+	font-size: 100%;
+	line-height: inherit;
 	color: #464646;
 	padding: 2px;
 	background: #fff;
@@ -200,40 +200,25 @@ input[type=submit] {
 }
 
 /* WORDPRESS */
-.alignright {
-	margin-bottom: 20px;
-	margin-left: 20px;
-	float: right;
-}
-.alignleft {
-	margin-right: 20px;
-	margin-bottom: 20px;
-	float: left;
-}
-.aligncenter {
-	margin-right: auto;
-	margin-bottom: 20px;
-	margin-left: auto;
-}
-.alignnone {
-	margin-bottom: 20px;
-}
-
+.alignright,
 img.alignright {
 	margin-bottom: 20px;
 	margin-left: 20px;
 	float: right;
 }
+.alignleft,
 img.alignleft {
 	margin-right: 20px;
 	margin-bottom: 20px;
 	float: left;
 }
+.aligncenter,
 img.aligncenter {
 	margin-right: auto;
 	margin-bottom: 20px;
 	margin-left: auto;
 }
+.alignnone,
 img.alignnone {
 	margin-bottom: 20px;
 }
