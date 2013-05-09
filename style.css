@@ -115,9 +115,8 @@ textarea,
 select,
 button {
 	width: 100%;
-	font-family: inherit;
-	font-size: 100%;
-	line-height: inherit;
+	font: 14px Arial, Helvetica, Verdana, sans-serif;
+	line-height: 20px;
 	color: #464646;
 	padding: 2px;
 	background: #fff;
@@ -454,6 +453,7 @@ section#content {
 	float: none;
 }
 .forum-archive section#content {
+	width: 620px;
 	margin-right: 10px;
 	margin-left: 10px;
 	float: left;
