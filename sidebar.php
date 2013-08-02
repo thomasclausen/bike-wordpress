@@ -59,19 +59,19 @@
 						$years = round($time_difference / 29030400 ); 
 						
 						if ( $seconds <= 60 ) { // Seconds
-							if ( $seconds == 1 ) { return __( '1 sekund siden', 'bike' ); } else { return sprintf( __( '%s sekunder siden', 'bike' ), $seconds); }
+							if ( $seconds === 1 ) { return __( '1 sekund siden', 'bike' ); } else { return sprintf( __( '%s sekunder siden', 'bike' ), $seconds); }
 						} elseif ( $minutes <= 60 ) { //Minutes
-							if ( $minutes == 1 ) { return __( '1 minut siden', 'bike' ); } else { return sprintf( __( '%s minutter siden', 'bike' ), $minutes); }
+							if ( $minutes === 1 ) { return __( '1 minut siden', 'bike' ); } else { return sprintf( __( '%s minutter siden', 'bike' ), $minutes); }
 						} elseif ( $hours <= 24 ) { //Hours
-							if ( $hours == 1 ) { return __( '1 time siden', 'bike' ); } else { return sprintf( __( '%s timer siden', 'bike' ), $hours); }
+							if ( $hours === 1 ) { return __( '1 time siden', 'bike' ); } else { return sprintf( __( '%s timer siden', 'bike' ), $hours); }
 						} else if($days <= 7) { //Days
-							if ( $days == 1 ) { return __( '1 dag siden', 'bike' ); } else { return sprintf( __( '%s dage siden', 'bike' ), $days); }
+							if ( $days === 1 ) { return __( '1 dag siden', 'bike' ); } else { return sprintf( __( '%s dage siden', 'bike' ), $days); }
 						} else if($weeks <= 4) { //Weeks
-							if( $weeks == 1 ) { return __( '1 uge siden', 'bike' ); } else { return sprintf( __( '%s uger siden', 'bike' ), $weeks); }
+							if( $weeks === 1 ) { return __( '1 uge siden', 'bike' ); } else { return sprintf( __( '%s uger siden', 'bike' ), $weeks); }
 						} elseif ( $months <= 12 ) { //Months
-							if ( $months == 1 ) { return __( '1 m&aring;ned siden', 'bike' ); } else { return sprintf( __( '%s m&aring;neder siden', 'bike' ), $months); }
+							if ( $months === 1 ) { return __( '1 m&aring;ned siden', 'bike' ); } else { return sprintf( __( '%s m&aring;neder siden', 'bike' ), $months); }
 						} else { //Years
-							if ( $years == 1 ) { return __( '1 &aring;r siden', 'bike' ); } else { return sprintf( __( '%s &aring;r siden', 'bike' ), $years); }
+							if ( $years === 1 ) { return __( '1 &aring;r siden', 'bike' ); } else { return sprintf( __( '%s &aring;r siden', 'bike' ), $years); }
 						}
 					} 
 					echo '<div class="image-date"><strong>' . __( 'Billedet er taget:', 'bike' ) . '</strong> ' . time_stamp( $imagemeta['image_meta']['created_timestamp'] ) . ' (' . date( 'H:i:s - d/m/y', $imagemeta['image_meta']['created_timestamp'] ) . ')</div>';
@@ -88,7 +88,7 @@
 					// shutter speed handler
 					if ( ( 1 / $imagemeta['image_meta']['shutter_speed'] ) > 1 ) {
 						echo "1/";
-						if ( number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1 ) ==  number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0 ) ) {
+						if ( number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1 ) ===  number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0 ) ) {
 							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 0, '.', '' ) . __( ' sek.', 'bike' ) . '</div>';
 						} else {
 							echo number_format( ( 1 / $imagemeta['image_meta']['shutter_speed'] ), 1, '.', '' ) . __( ' sek.', 'bike' ) . '</div>';
