@@ -360,7 +360,7 @@ function bike_pagination() {
  * @since BIKE 1.0
  */
 function bike_custom_wp_link_pages( $args ) {
-	if ( $args['next_or_number'] == 'next_and_number' ) :
+	if ( $args['next_or_number'] === 'next_and_number' ) :
 		global $page, $numpages, $multipage, $more, $pagenow;
 		$args['next_or_number'] = 'number';
 		$prev = '';
@@ -372,7 +372,7 @@ function bike_custom_wp_link_pages( $args ) {
 					$prev .= _wp_link_page( $i ) . '<span class="prev">' .  $args['link_before'] . $args['previouspagelink'] . '</span>' . $args['link_after'] . '</a>';
 				endif;
 				$i = $page;
-				if ( $i == $page ) :
+				if ( $i === $page ) :
 					$pagelink = '<span class="current">' . $args['link_before'] . $args['pagelink'] . $args['link_after'] . '</span>';
 				else :
 					$pagelink = $args['link_before'] . $args['pagelink'] . $args['link_after'];
@@ -432,7 +432,7 @@ function bike_comment( $comment, $args, $depth ) {
 					<div class="author"><?php comment_author_link(); ?></div>
 					<div class="date"><?php printf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>', esc_url( get_comment_link( $comment->comment_ID ) ), get_comment_time( 'c' ), sprintf( __( '%1$s d. %2$s - kl. %3$s', 'bike' ), get_comment_date( 'l' ), get_comment_date(), get_comment_time() ) ); ?></div>
 				</header>
-				<?php if ( $comment->comment_approved == '0' ) :
+				<?php if ( $comment->comment_approved === '0' ) :
 					echo '<p class="comment-awaiting-moderation">' . __( 'Din kommentar afventer godkendelse.', 'bike' ) . '</p>';
 				endif; ?>
 				<?php comment_text(); ?>
@@ -454,7 +454,7 @@ function bike_comment( $comment, $args, $depth ) {
 					<div class="author"><?php comment_author_link(); ?></div>
 					<div class="date"><?php printf( '<a href="%1$s"><time pubdate datetime="%2$s">%3$s</time></a>', esc_url( get_comment_link( $comment->comment_ID ) ), get_comment_time( 'c' ), sprintf( __( '%1$s d. %2$s - kl. %3$s', 'bike' ), get_comment_date( 'l' ), get_comment_date(), get_comment_time() ) ); ?></div>
 				</header>
-				<?php if ( $comment->comment_approved == '0' ) :
+				<?php if ( $comment->comment_approved === '0' ) :
 					echo '<p class="comment-awaiting-moderation">' . __( 'Din kommentar afventer godkendelse.', 'bike' ) . '</p>';
 				endif; ?>
 				<?php comment_text(); ?>
