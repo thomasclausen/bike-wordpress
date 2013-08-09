@@ -1,10 +1,10 @@
 <?php if ( !empty( $_SERVER['SCRIPT_FILENAME'] ) && 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) :
 	die ( 'Please do not load this page directly. Thanks!' );
 endif;
-if ( post_password_required() && have_comments() ) {
+if ( post_password_required() && have_comments() ) :
 	_e( 'Denne nyhed er kodeordsbeskyttet. Indtast kodeordet for at se kommentarer.', 'bike' );
 	return;
-} ?>
+endif; ?>
 
 <div id="comments">	
 	<h2><?php comments_number( __( 'Skriv en kommentar', 'bike' ), __( '1 kommentar', 'bike' ), __( '% kommentarer', 'bike' ) );?></h2>
