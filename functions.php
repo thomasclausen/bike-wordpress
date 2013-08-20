@@ -4,7 +4,7 @@
  *
  * @package BIKE
  * @since BIKE 1.0
- * @last_updated BIKE 1.7
+ * @last_updated BIKE 1.8
  */
 
 
@@ -178,6 +178,7 @@ add_action( 'wp_head', 'bike_html5extras', 1 );
  * Insert HTML5 shiv
  *
  * @since BIKE 1.0
+ * @last_updated BIKE 1.8
  */
 function bike_html5shiv() {
 	global $is_IE;
